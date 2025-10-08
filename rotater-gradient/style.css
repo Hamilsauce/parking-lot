@@ -1,0 +1,345 @@
+:root {
+  --purp-color: #520FE2;
+}
+
+* {
+  box-sizing: border-box;
+  padding: 0;
+  margin: 0;
+  z-index: 0;
+}
+
+html {
+  font-family: 'Roboto', sans-serif;
+  font-size: 16px;
+}
+
+html,
+body {
+  width: 100%;
+  height: 100%;
+}
+
+a {
+  text-decoration: none;
+  color: #F4F4F4;
+}
+
+#hamilsauce-link {
+  display: flex;
+  flex-direction: row;
+  justify-content: center;
+  align-items: center;
+  gap: 0px;
+  width: 100%;
+  height: 100%;
+}
+
+#app {
+  display: grid;
+  grid-template-rows: minmax(90px, 90px) 1fr 40px;
+  grid-template-columns: 1fr;
+  gap: 4px;
+  width: 100%;
+  height: 100%;
+  padding: 16px 4px 4px 4px;
+  overflow: hidden;
+  background: #444444;
+  
+  align-content: flex-start;
+  justify-content: flex-start;
+  justify-items: center;
+  color: var(--purp-color);
+  background: linear-gradient(200deg, hsla(272, 13%, 20%, 1) 40%, hsla(204, 32%, 20%, 1) 100%);
+  /* transition: 5s; */
+}
+
+/* #app>* {
+  max-width: 500px;
+} */
+
+#app[data-is-bizarro-mode=true] {
+  filter: contrast(0.5) invert(1);
+}
+
+/* #app * {
+  border: 1px solid #C614CAD4 !important;
+} */
+
+
+#app-header {
+  display: flex;
+  flex-direction: row;
+  justify-content: space-between;
+  align-items: flex-start;
+  gap: 0px;
+  padding: 0px 8px;
+  color: #F0F0F0;
+}
+
+#app-header-center {
+  display: flex;
+  flex-direction: row;
+  justify-content: center;
+  align-items: center;
+  gap: 0px;
+  font-size: 14px;
+  width: 70%;
+  height: 100%;
+}
+
+#app-header-right {
+  display: flex;
+  flex-direction: row;
+  justify-content: center;
+  align-items: center;
+  gap: 0px;
+  font-size: 14px;
+  width: 30%;
+  height: 100%;
+  
+}
+
+#app-header-right>span {
+  filter: opacity(0);
+  font-size: 1px;
+  transform: rotate(1405deg);
+  transition: 1s ease-out;
+}
+
+#app[data-is-bizarro-mode=true] #app-header-right>span {
+  filter: opacity(1);
+  font-size: 28px;
+  transform: rotate(-45deg);
+  
+}
+
+#app-body {
+  overflow-y: hidden;
+  display: grid;
+  grid-template-rows: 1fr;
+  grid-template-columns: 1fr 1fr;
+  justify-content: flex-start;
+  align-items: flex-start;
+  gap: 4px;
+}
+
+#app-footer {
+  display: flex;
+  flex-direction: row;
+  justify-content: center;
+  align-items: center;
+  gap: 0px;
+  width: 100%;
+  height: 100%;
+  color: #F0F0F0;
+}
+
+#game-grid {
+  display: grid;
+  grid-template-columns: 1fr;
+  gap: 0px;
+  width: fit-content;
+  /* overflow: scroll; */
+  color: #505050;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-around;
+  gap: 4px;
+}
+
+.row {
+  display: grid;
+  grid-template-columns: 40px 1fr;
+  gap: 2px;
+  width: 200px;
+  height: 35px;
+  overflow: hidden;
+  background: transparent;
+  color: #505050;
+  border: 2px solid transparent;
+}
+
+.row[data-is-open=true] {}
+
+.row[data-is-open=true] .row-header {
+  color: #D6D6D6;
+}
+
+.row[data-is-open=true] .row-cell {
+  background: #3F3F3F5C;
+  border-right: 2px solid #FFFFFF80;
+  border-bottom: 0px solid #FFFFFF99;
+  border-radius: 1px;
+  filter: brightness(0.9) contrast(1.4);
+}
+
+.row-header {
+  display: flex;
+  flex-direction: row;
+  justify-content: center;
+  align-items: center;
+  gap: 0px;
+  background: #284678;
+  color: #E2E2E2;
+}
+
+.row-cell {
+  display: flex;
+  flex-direction: row;
+  justify-content: center;
+  align-items: center;
+  gap: 0px;
+  font-size: 22px;
+  font-weight: 600;
+  border: 2px solid transparent;
+}
+
+.row[data-locked=true] .row-cell {
+  background: #C2C2C2;
+}
+
+.scroll-container {
+  width: 100%;
+  height: 100%;
+  overflow: auto;
+}
+
+#game-controls {
+  display: grid;
+  grid-template-rows: auto 1fr;
+  grid-template-columns: 1fr;
+  justify-content: flex-end;
+  /* align-self: center; */
+  align-items: flex-start;
+  align-items: flex-end;
+  gap: 24px;
+  overflow: auto;
+  width: 100%;
+  height: 100%;
+}
+
+#game-controls-header {
+  display: flex;
+  flex-direction: row;
+  justify-content: center;
+  align-items: center;
+  gap: 0px;
+  width: 100%;
+  height: 100%;
+  /* padding: 4px; */
+  margin-bottom: 8px;
+  border-bottom: 1px solid #FFFFFFC2 !important;
+}
+
+#game-actions {
+  display: flex;
+  flex-direction: row;
+  justify-content: flex-end;
+  align-items: flex-end;
+  gap: 8px;
+  width: 100%;
+  height: 100%;
+  padding: 4px 0 !important;
+  /* margin-bottom: 8px; */
+  /* border-bottom: 1px solid #FFFFFFC2 !important; */
+}
+
+#game-controls>div {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  gap: 4px 8px;
+  padding: 8px;
+  width: 100%;
+  /* padding: 0 16px; */
+  /* height: 100%; */
+}
+
+#game-controls-bottom {
+  display: flex;
+  flex-direction: column;
+  justify-content: flex-start !important;
+  /* align-items: flex-start !important; */
+  gap: 0px;
+  padding: 8px !important;
+  
+}
+
+
+#app[data-game-started=false] #game-controls-top {
+  opacity: 0;
+  transition: 0.25s;
+}
+
+#app[data-game-started=true] #instructions {
+  opacity: 0;
+  /* transition: 0.25s; */
+}
+
+#instructions {
+  display: flex;
+  flex-direction: row;
+  justify-content: flex-start;
+  align-items: flex-start;
+  gap: 0px;
+  max-width: 170px;
+  height: 100%;
+  /* width: 100%; */
+  
+  margin-top: 64px;
+  padding: 4px 4px;
+  
+  color: #C6C6C6AB;
+  filter: contrast(1.4);
+}
+
+.stat-display {
+  display: flex;
+  flex-direction: row;
+  justify-content: flex-start;
+  justify-content: space-between;
+  align-items: center;
+  gap: 32px;
+  padding: 4px 4px;
+  color: #E6E6E6;
+  font-size: 17px;
+  width: 120px;
+  height: 100%;
+}
+
+.stat-label {
+  font-weight: 600;
+}
+
+
+#random-button {
+  display: flex;
+  flex-direction: row;
+  justify-content: center;
+  align-items: center;
+  gap: 0px;
+  width: 130px;
+  height: 60px;
+  padding: 8px 4px;
+  font-size: 28px;
+  font-weight: 700;
+  border: 4px solid #DFDFDF;
+  background: #2F313A;
+  background: hsla(235, 15%, 31%, 1);
+  border-radius: 5px;
+  color: #EEEEEE;
+}
+
+#trash-icon[data-hide=true] {
+  /* display: none; */
+  opacity: 0;
+  pointer-events: none;
+  filter: contrast;
+}
+
+#random-button:active {
+  filter: brightness(0.8) contrast(1.4);
+  transition: 0.15s;
+}

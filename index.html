@@ -1,0 +1,124 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta http-equiv="content-type" content="text/html; charset=utf-8" />
+  <link href="https://fonts.googleapis.com/css2?family=Roboto:wght@300;400;700;900&display=swap" rel="stylesheet">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Bebas+Neue&family=Roboto:ital,wght@0,300;0,400;0,700;1,400&display=swap" rel="stylesheet">
+  <title>Lukes Crazy Number List Game</title>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/rxjs/7.3.0/rxjs.umd.min.js" integrity="sha512-y3JTS47nnpKORJX8Jn1Rlm+QgRIIZHtu3hWxal0e81avPrqUH48yk+aCi+gprT0RMAcpYa0WCkapxe+bpBHD6g==" crossorigin="anonymous" referrerpolicy="no-referrer"></script>
+  <link rel="stylesheet" href="./style.css" />
+</head>
+
+<body>
+  <div id="app" _data-game-started="false">
+    <header id="app-header">
+      <div id="app-header-left"></div>
+      <div id="app-header-center">
+        <h1>PARKO LOT</h1>
+      </div>
+      <div id="app-header-right">
+        <span></span>
+      </div>
+    </header>
+    <section id="app-body">
+      <svg id="svg-canvas" width="400" height="400" viewBox="0 0 11 11" preserveAspectRatio="xMidYMid meet" xmlns:xlink="http://www.w3.org/1999/xlink" xmlns="http://www.w3.org/2000/svg">
+        <defs>
+          <g data-template="parking-space" class="parking-space" data-x="" data-y="" data-occupied-by="" transform="translate(0,0) rotate(0) scale(0.5)">
+            <rect class="parking-space-rect" x="1.0" y="1.0" rx="0" ry="0" width="2" height="2"></rect>
+            <text x="2" y="2.05" text-anchor="middle" dominant-baseline="middle">0,0</text>
+          </g>
+          
+          <g id="circle-container">
+            <circle id="circle-template" fill="teal" cx="0" cy="0" r=" 10" stroke="#000000" stroke-width="1" transform="translate(0,0) rotate(0) scale(1)" />
+          </g>
+          
+        </defs>
+        <g id="scene" transform="translate(0,0) rotate(0) scale(1)">
+          <rect x="0" y="0" rx="0" ry="0" width="11" height="11"></rect>
+          
+        </g>
+        <!-- <use href="#circle-container"></use> -->
+      </svg>
+      <div id="app-controls">
+        <input class="app-button" type="button" name="park-car-button" id="park-car-button" value="Park Car" />
+        <input class="app-button" type="button" name="park-bus-button" id="park-bus-button" value="Park Bus" />
+      </div>
+      <div id="parked-vehicle-display">
+        <div id="list-header">Parked Vehcles</div>
+        <ul id="vehicle-list">
+          <li class="vehicle-list-item">
+            <div class="vehicle-type">Car</div>
+            <div class="vehicle-id">I478H3CR3</div>
+          </li>
+          <li class="vehicle-list-item">
+            <div class="vehicle-type">Car</div>
+            <div class="vehicle-id">I478H3CR3</div>
+          </li>
+          <li class="vehicle-list-item">
+            <div class="vehicle-type">Car</div>
+            <div class="vehicle-id">I478H3CR3</div>
+          </li>
+          <li class="vehicle-list-item">
+            <div class="vehicle-type">Car</div>
+            <div class="vehicle-id">I478H3CR3</div>
+          </li>
+          <li class="vehicle-list-item">
+            <div class="vehicle-type">Car</div>
+            <div class="vehicle-id">I478H3CR3</div>
+          </li>
+          <li class="vehicle-list-item">
+            <div class="vehicle-type">Car</div>
+            <div class="vehicle-id">I478H3CR3</div>
+          </li>
+          <li class="vehicle-list-item">
+            <div class="vehicle-type">Car</div>
+            <div class="vehicle-id">I478H3CR3</div>
+          </li>
+          <li class="vehicle-list-item">
+            <div class="vehicle-type">Car</div>
+            <div class="vehicle-id">I478H3CR3</div>
+          </li>
+          <li class="vehicle-list-item">
+            <div class="vehicle-type">Car</div>
+            <div class="vehicle-id">I478H3CR3</div>
+          </li>
+          <li class="vehicle-list-item">
+            <div class="vehicle-type">Car</div>
+            <div class="vehicle-id">I478H3CR3</div>
+          </li>
+          <li class="vehicle-list-item">
+            <div class="vehicle-type">Car</div>
+            <div class="vehicle-id">I478H3CR3</div>
+          </li>
+        </ul>
+      </div>
+    </section>
+    <footer id="app-footer">
+      <a id="hamilsauce-link" href="https://hamilsauce.github.io">hamilsauce</a>
+    </footer>
+  </div>
+  <script type="importmap">
+    {
+    "imports": {
+      "vue": "https://unpkg.com/vue@3/dist/vue.esm-browser.js"
+    }
+  }
+</script>
+  
+  <!-- <script src="./script.js" type="module"></script> -->
+  
+  <script src="./main.js" type="module"></script>
+  
+  <template data-template="vehicle-list-item">
+    <li class="vehicle-list-item">
+      <div class="vehicle-type">Car</div>
+      <div class="vehicle-id">I478H3CR3</div>
+    </li>
+  </template>
+</body>
+
+</html>
