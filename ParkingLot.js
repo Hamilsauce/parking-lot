@@ -40,8 +40,6 @@ export class ParkingSpace {
   #value;
   
   constructor() {}
-  
-  // get size() { return this.#size };
 }
 
 // 2D Collection of ParkingSpaces
@@ -77,100 +75,109 @@ export class ParkingLot extends EventTarget {
   
   hasSpaceFor(vehicle) {}
   
+  setByID(id, value) {
+    const rows = this.#parkingSpaces.length;
+    const cols = this.#parkingSpaces[0].length;
+    
+    for (let r = 0; r < rows; r++) {
+      for (let c = 0; c <= cols; c++) {
+        const space = this.#parkingSpaces[r][c]
+        this.#parkingSpaces[r][c] = !!space && space.licensePlateNumber === id ?
+          value : space;
+      }
+    }
+  }
+  
   findFirstPlacement(vehicleSize) {
     const lot = this.#parkingSpaces
     const rows = lot.length;
     const cols = lot[0].length;
-    // Horizontal search
+    
+    // Horizontal 
     for (let r = 0; r < rows; r++) {
       for (let c = 0; c <= cols - vehicleSize; c++) {
         let canFit = true;
+        
         for (let k = 0; k < vehicleSize; k++) {
           if (lot[r][c + k] !== null) {
             canFit = false;
+            
             break;
           }
         }
+        
         if (canFit) return { orientation: 'H', row: r, col: c };
       }
     }
     
-    // Vertical search
+    // Vertical
     for (let c = 0; c < cols; c++) {
       for (let r = 0; r <= rows - vehicleSize; r++) {
         let canFit = true;
+        
         for (let k = 0; k < vehicleSize; k++) {
           if (lot[r + k][c] !== null) {
             canFit = false;
+            
             break;
           }
         }
+        
         if (canFit) return { orientation: 'V', row: r, col: c };
       }
     }
     
-    return null; // No placement available
+    return null;
   }
   
-  
   park(vehicle) {
-    const placement = this.findFirstPlacement(vehicle.size)
+    const placement = this.findFirstPlacement(vehicle.size);
+    if (!placement) return null;
     
-    if (!placement) return null
-    
-    const { orientation, row, col } = placement
-    const firstSpace = this.#getParkingSpace(row, col)
-    
-    const parkingSpaceCoords = []
+    const parkingSpaceCoords = [];
+    const { orientation, row, col } = placement;
+    const firstSpace = this.#getParkingSpace(row, col);
     
     for (let i = 0; i < vehicle.size; i++) {
-      const coords = orientation === 'V' ? [row + i, col] : [row, col + i]
-      parkingSpaceCoords.push(coords)
+      const coords = orientation === 'V' ? [row + i, col] : [row, col + i];
+      parkingSpaceCoords.push(coords);
       
-      this.#parkingSpaces[coords[0]][coords[1]] = {
-        ...vehicle
-      }
+      this.#parkingSpaces[coords[0]][coords[1]] = vehicle;
       
-      this.#parkedCars.set(vehicle.licensePlateNumber, new Range(parkingSpaceCoords))
+      this.#parkedCars.set(vehicle.licensePlateNumber, new Range(parkingSpaceCoords));
     }
   }
   
-  #getParkingSpace(row, col) {
-    return this.#parkingSpaces[row][col]
-  }
+  #getParkingSpace(row, col) { return this.#parkingSpaces[row][col]; }
   
-  #setParkingSpace(row, col, value) {
-    this.#parkingSpaces[row][col] = value;
-  }
+  #setParkingSpace(row, col, value) { this.#parkingSpaces[row][col] = value; }
   
   retrieve(licensePlateNumber) {
-    const vehicleRange = this.#parkedCars.get(licensePlateNumber)
-    let vehicle = null
+    const vehicleRange = this.#parkedCars.get(licensePlateNumber);
+    let vehicle = null;
     
     if (!vehicleRange) {
-      console.error(`VEHICLE NOT FOUND IN RETRIEVE. License: ${licensePlateNumber}`)
+      this.setByID(licensePlateNumber, null);
+      console.error(`VEHICLE NOT FOUND IN RETRIEVE. License: ${licensePlateNumber}`);
       return;
     }
     
-    
     vehicleRange.coords.forEach(([r, c], i) => {
-      if (!vehicle) {
-        vehicle = this.#getParkingSpace(r, c)
-      }
+      if (!vehicle) vehicle = this.#getParkingSpace(r, c);
       
-      this.#setParkingSpace(r, c, null)
+      this.#setParkingSpace(r, c, null);
     });
     
-    this.#parkedCars.delete(licensePlateNumber)
+    this.#parkedCars.delete(licensePlateNumber);
     
     return vehicle;
   }
   
-  
   bfsShortestPath(start, size = 1) {
     const queue = [
       [start]
-    ]; // queue of paths
+    ];
+    
     const visited = new Set(); // to avoid revisiting nodes
     
     while (queue.length > 0) {

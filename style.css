@@ -44,20 +44,13 @@ a {
   width: 100%;
   height: 100%;
   padding: 16px 4px 4px 4px;
-  /* overflow: hidden; */
   background: #444444;
-  
   align-content: flex-start;
   justify-content: flex-start;
   justify-items: center;
   color: var(--white-color);
   background: linear-gradient(200deg, hsla(95, 23%, 45%, 1) 40%, hsla(76, 32%, 26%, 1) 100%);
-  /* transition: 5s; */
 }
-
-/* #app>* {
-  max-width: 500px;
-} */
 
 #app[data-is-bizarro-mode=true] {
   filter: contrast(0.5) invert(1);
@@ -89,18 +82,6 @@ a {
   height: 100%;
 }
 
-/* #app-header-right {
-  display: flex;
-  flex-direction: row;
-  justify-content: center;
-  align-items: center;
-  gap: 0px;
-  font-size: 14px;
-  width: 30%;
-  height: 100%;
-  
-} */
-
 #app-header-right>span {
   filter: opacity(0);
   font-size: 1px;
@@ -112,26 +93,18 @@ a {
   filter: opacity(1);
   font-size: 28px;
   transform: rotate(-45deg);
-  
 }
 
 #app-body {
-  /* overflow-y: hidden; */
   display: grid;
   grid-template-columns: 1fr;
-  grid-template-rows: 1fr 70px 1fr;
+  grid-template-rows: auto 70px 1fr;
   justify-content: center;
+  justify-content: flex-start;
   align-items: flex-start;
   gap: 4px;
-  
-/*  display: flex;
-  flex-direction: column;
-  justify-content: flex-start;
-  align-items: center;
-  gap: 0px;
-  */
   overflow-y: hidden;
-
+  
 }
 
 #app-controls {
@@ -154,10 +127,8 @@ a {
 }
 
 .app-button:active {
-  /* background: #4E4E4EC2; */
   filter: brightness(0.8);
   border: 2px solid #3B3B3B00;
-  
 }
 
 #app-footer {
@@ -170,7 +141,6 @@ a {
   height: 100%;
   color: #F0F0F0;
 }
-
 
 .row {
   display: grid;
@@ -229,10 +199,6 @@ a {
   overflow: auto;
 }
 
-
-
-
-
 #app[data-game-started=false] #game-controls-top {
   opacity: 0;
   transition: 0.25s;
@@ -240,11 +206,9 @@ a {
 
 #app[data-game-started=true] #instructions {
   opacity: 0;
-  /* transition: 0.25s; */
 }
 
 #scene {
-  /* fill: #D9D9D900; */
   stroke: #D9D9D9;
   stroke-width: 0;
   
@@ -259,12 +223,10 @@ a {
     fill: #989898;
     fill: #8288956E;
     stroke: #292E389E;
-    /* stroke: #48484899; */
     
     stroke-width: 0.075;
     rx: 0.15;
     ry: 0.15;
-    /* stroke-width: 0; */
     filter:
       contrast(1.5) brightness(0.8);
   }
@@ -272,27 +234,18 @@ a {
   text {
     font-size: 0.75px;
     fill: #FFFFFF61;
-    /* stroke: #FFFFFF99; */
     stroke-width: 0.0;
-    /* filter: invert(1); */
-    
   }
 }
 
 .parking-space[data-occupied=true] {
   rect {
     fill: #25242E99;
-    /* stroke: #D9D9D9; */
-    /* stroke: #48484899; */
-    
-    /* stroke-width: 0.05; */
     filter: contrast(1.5);
   }
   
   text {
-    /* font-size: 0.05px; */
     fill: #FFFFFF99;
-    /* stroke: #FFFFFF99; */
     stroke-width: 0.015;
     
   }
@@ -307,7 +260,7 @@ a {
   overflow-y: auto;
   width: 100%;
   height: 100%;
-
+  
   #list-header {
     font-size: 16px;
     font-weight: 600;
@@ -316,19 +269,42 @@ a {
   #vehicle-list {
     list-style: none;
     overflow-y: auto;
-
+    
     .vehicle-list-item {
       display: flex;
       flex-direction: row;
       justify-content: flex-start;
       align-items: center;
       gap: 8px;
-      padding: 4px;
+      padding: 4px 8px;
       border-bottom: 1px solid #D7D7D780;
+      font-size: 18px;
       
-      .vehicle-type {}
+      .vehicle-type {
+        width: 40px;
+        padding: 0 8px 0 0;
+        border-right: 1px solid #D7D7D780;
+      }
       
-      .vehicle-id {}
+      .vehicle-id {
+        padding: 0 0 0 8px;
+      }
     }
   }
+}
+
+.info-box {
+  display: flex;
+  flex-direction: row;
+  justify-content: center;
+  align-items: center;
+  gap: 0px;
+  width: 200px;
+  height: 50px;
+  
+  background: #E2E2E2;
+  color: #616161;
+  font-size: 14px;
+  box-shadow: 0 2px 10px 1px #00000070;
+  z-index: 1000;
 }
