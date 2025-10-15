@@ -91,9 +91,9 @@ parkCarButton.addEventListener('click', e => {
   buildParkingLot(svgCanvas, parkingLot.parkingSpaces)
 });
 
-appBody.addEventListener('contextmenu', async (e) => {
-  await navigator.clipboard.writeText(JSON.stringify(parkCartTimes, null, 2))
-});
+// appBody.addEventListener('contextmenu', async (e) => {
+//   await navigator.clipboard.writeText(JSON.stringify(parkCartTimes, null, 2))
+// });
 
 parkBusButton.addEventListener('click', e => {
   let rando = Math.round((Math.random() * 394));
